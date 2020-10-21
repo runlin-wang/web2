@@ -1,0 +1,21 @@
+/*//////////////////////////////////////////////////////////////////
+[ admin/main ]*/
+
+.main{
+    background-color: #009688;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.width-10{
+    width: 10%;
+}
+
+.width-20{
+    width: 20%;
+}
+
+.width-30{
+    width: 30%;
+}
+
