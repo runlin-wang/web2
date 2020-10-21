@@ -20,7 +20,7 @@
 %>
 <body>
 
-    <p class="text-center"欢迎光临 <%=session.getAttribute("CurrentUserName").toString()%> , <a href="/doLogout">注销</a></p>
+    <p class="text-center">欢迎光临 <%=session.getAttribute("CurrentUserName").toString()%> , <a href="/doLogout">注销</a></p>
 
     <hr/>
     <div class="main">
@@ -53,6 +53,7 @@
                     <td><%=user.getTelephone()%></td>
                     <td><%=user.getEmail()%></td>
                     <td>
+                        <%--此处使用 true 或 false .后缀的方式修改图片路径--%>
                         <img src="/images/<%=user.isStatus()%>.jpg" width="20px" title="<%=user.isStatus() ? "可用" : "不可用"%>">
                     </td>
                     <td><%=user.getRole().getRoleName()%></td>
