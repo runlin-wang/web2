@@ -16,10 +16,9 @@ public class LoginService {
     /**
      * 数据库连接地址，用户名，密码
      */
-    private String url = "jdbc:mysql://localhost:3306/study_jsp?serverTimezone=Asia/Shanghai";
-    private String jdbcUserName = "root";
-//    private String jdbcPwd = "123456";
-    private String jdbcPwd = "root@123";
+    private final String url = "jdbc:mysql://localhost:3306/web2?serverTimezone=Asia/Shanghai";
+    private final String jdbcUserName = "root";
+    private final String jdbcPwd = "123456";
 
     List<SystemUsers> lst = null;
     ResultSet rs = null;
