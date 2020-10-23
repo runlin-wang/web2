@@ -2,19 +2,20 @@
 
 南通职业大学 软件技术 Web2 班 动态网页设计 代码
 
+---
 
+## 目录
 
-- [web2](#web2)
-  * [下载](#下载)
-  * [所需环境](#所需环境)
-    + [JDK 及 MySQL确认](#jdk-及-mysql确认)
-    + [JDBC 数据库 API](#jdbc-数据库-api)
-    + [Tomcat](#tomcat)
-    + [Servlet](#servlet)
-  * [配置项目并进行使用](#配置项目并进行使用)
-  * [运行](#运行)
+* [下载](#下载)
+- [所需环境](#所需环境)
+  + [JDK 及 MySQL确认](#jdk-及-mysql确认)
+  + [JDBC 数据库 API](#jdbc-数据库-api)
+  + [Tomcat](#tomcat)
+  + [Servlet](#servlet)
+- [配置项目并进行使用](#配置项目并进行使用)
+- [运行](#运行)
 
-
+---
 
 
 ## 下载
@@ -87,8 +88,9 @@
 
 - 项目结构中添加 servlet 及 jdbc 的 jar 包
 - ![config2.png](https://i.loli.net/2020/10/23/GfFAPajKMhHwLVr.png)
-
 - Problems 中如含有问题 请点击 fix -> add *** 添加到项目结构中
+
+
 
 ## 运行
 
