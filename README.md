@@ -24,7 +24,7 @@
 
 ### JDK 及 MySQL确认
 
-![java_version](w:\web2\image\java_version.png)
+![java_version](https://raw.githubusercontent.com/runlin-wang/img/master/img/java_version.png)
 
 >  确保 JDK 环境在 1.8 及以上
 
@@ -65,12 +65,12 @@
     - 数据库名 web2
     - 用户名     root
     - 密码        123456
-- ![image-20201022201732197](W:\web2\image\config.png)
+- ![image-20201022201732197](https://raw.githubusercontent.com/runlin-wang/img/master/img/config.png)
 
 
 
 - 项目结构中添加 servlet 及 jdbc 的 jar 包
-- ![image-20201022202931141](W:\web2\image\config2.png)
+- ![image-20201022202931141](https://raw.githubusercontent.com/runlin-wang/img/master/img/config2.png)
 
 - Problems 中如含有问题 请点击 fix -> add *** 添加到项目结构中
 
@@ -78,8 +78,8 @@
 
 - 添加 Tomcat 服务器
 - 选择 解压后的 Tomcat 根目录，并点击 fix
-- ![image-20201022203519778](W:\web2\image\config3.png)
+- ![image-20201022203519778](https://raw.githubusercontent.com/runlin-wang/img/master/img/config3.png)
 
 - 将框内内容删除并点击 OK
-- ![image-20201022203827590](W:\web2\image\config4.png)
+- ![image-20201022203827590](https://raw.githubusercontent.com/runlin-wang/img/master/img/config4.png)
 - 点击小绿点 运行 （run）
