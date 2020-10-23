@@ -4,11 +4,25 @@
 
 
 
-[TOC]
+- [web2](#web2)
+  * [下载](#下载)
+  * [所需环境](#所需环境)
+    + [JDK 及 MySQL确认](#jdk 及 mysql确认)
+    + [JDBC 数据库 API](#jdbc 数据库 api)
+    + [Tomcat](#tomcat)
+    + [Servlet](#servlet)
+  * [配置项目并进行使用](#配置项目并进行使用)
+  * [运行](#运行)
 
 
 
 
+## 下载
+
+- [GitHub](https://github.com/runlin-wang/study_jsp/releases)
+- [Gitee](https://gitee.com/runlin_wang/study_jsp/releases/)
+
+- [tools](https://cloud.189.cn/t/bIVfiyIBNFZf)
 
 
 
@@ -17,18 +31,18 @@
 - JDK 1.8 及以上
 - MySQL 8 以上
 - jdbc  数据库连接 API （与MySQL版本对应）
-- tomcat 大版本 8 或者 9
+- tomcat 大版本 8 或者 9 
 - servlet   （tools 文件夹📂中）
 
 
 
 ### JDK 及 MySQL确认
 
-![java_version](https://raw.githubusercontent.com/runlin-wang/img/master/img/java_version.png)
+![java_version.png](https://i.loli.net/2020/10/23/2dhTOLVwC4B7Hkx.png)
 
 >  确保 JDK 环境在 1.8 及以上
 
-![image-20201022194549868](W:\web2\image\mysql_version.png)
+![mysql_version.png](https://i.loli.net/2020/10/23/hlwATnIj6Q3RbaC.png)
 
 > 确保 MySQL 环境在 8.0 以上 确保能够通过命令行进入 MySQL 环境
 
@@ -65,12 +79,14 @@
     - 数据库名 web2
     - 用户名     root
     - 密码        123456
-- ![image-20201022201732197](https://raw.githubusercontent.com/runlin-wang/img/master/img/config.png)
+    
+
+- ![config.png](https://i.loli.net/2020/10/23/Q1X4GV6lu3PxiJj.png)
 
 
 
 - 项目结构中添加 servlet 及 jdbc 的 jar 包
-- ![image-20201022202931141](https://raw.githubusercontent.com/runlin-wang/img/master/img/config2.png)
+- ![config2.png](https://i.loli.net/2020/10/23/GfFAPajKMhHwLVr.png)
 
 - Problems 中如含有问题 请点击 fix -> add *** 添加到项目结构中
 
@@ -78,8 +94,8 @@
 
 - 添加 Tomcat 服务器
 - 选择 解压后的 Tomcat 根目录，并点击 fix
-- ![image-20201022203519778](https://raw.githubusercontent.com/runlin-wang/img/master/img/config3.png)
+- ![config3.png](https://i.loli.net/2020/10/23/dioR8ymYZ4kTPeh.png)
 
 - 将框内内容删除并点击 OK
-- ![image-20201022203827590](https://raw.githubusercontent.com/runlin-wang/img/master/img/config4.png)
+- ![config4.png](https://i.loli.net/2020/10/23/7YyCozZxgqufWNS.png)
 - 点击小绿点 运行 （run）
