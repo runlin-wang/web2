@@ -20,6 +20,8 @@ public class SystemUsers {
      */
     private Roles role;
 
+    public SystemUsers() {}
+
     public SystemUsers(String loginName, String loginPassword, String loginSalt, String telephone, String email, boolean status, int roleId, Roles role) {
         this.loginName = Tools.isEmpty(loginName, "default");
         this.loginPassword = Tools.isEmpty(loginPassword, "123456");
@@ -34,9 +36,6 @@ public class SystemUsers {
 
     public SystemUsers(String loginName, String pwd, String telephone, String email) {
         this(loginName, pwd, null, telephone, email, true, 2, null);
-    }
-
-    public SystemUsers() {
     }
 
     public int getId() {
