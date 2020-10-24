@@ -18,7 +18,6 @@ public class LoginService {
     private final String dbPwd;
 
     List<SystemUsers> users = null;
-    ResultSet rs = null;
     Connection conn = null;
     Statement stmt = null;
 
@@ -258,12 +257,8 @@ public class LoginService {
         try {
             if (conn != null)
                 conn.close();
-            //TODO delete
-            stmt.close();
             if (stmt != null)
                 stmt.close();
-            if (rs != null)
-                rs.close();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
@@ -300,7 +295,7 @@ public class LoginService {
         createConnection();
         try {
             stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery(sql);
 
             // 遍历结果集，转换为 SystemUsers 类并依次添加到列表
             users = new ArrayList<>();
@@ -322,7 +317,7 @@ public class LoginService {
             createConnection();
 
             String sql = String.format("select * from roles where id = %d", roleId);
-            rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
                 role = new Roles();
