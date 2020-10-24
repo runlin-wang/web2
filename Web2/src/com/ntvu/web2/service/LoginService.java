@@ -26,9 +26,11 @@ public class LoginService {
      * 数据库连接信息
      */
     public LoginService() {
-        url = "jdbc:mysql://localhost:3306/web2?serverTimezone=Asia/Shanghai";
+//        url = "jdbc:mysql://localhost:3306/web2?serverTimezone=Asia/Shanghai";
+        url = "jdbc:mysql://localhost:3306/study_jsp?serverTimezone=Asia/Shanghai";
         dbUserName = "root";
-        dbPwd = "123456";
+//        dbPwd = "123456";
+        dbPwd = "root@123";
     }
 
     public LoginService(String url, String dbUserName, String dbPwd) {
@@ -256,6 +258,8 @@ public class LoginService {
         try {
             if (conn != null)
                 conn.close();
+            //TODO delete
+            stmt.close();
             if (stmt != null)
                 stmt.close();
             if (rs != null)
@@ -271,6 +275,7 @@ public class LoginService {
      * @return row(s) 受影响的行数
      */
     private int updateSql(String sql) {
+        System.out.println(sql);
         int rows = 0;
         try {
             createConnection();
@@ -291,6 +296,7 @@ public class LoginService {
      * @return List<SystemUsers>
      */
     private List<SystemUsers> getSystemUsers(String sql) {
+        System.out.println(sql);
         createConnection();
         try {
             stmt = conn.createStatement();
@@ -332,5 +338,13 @@ public class LoginService {
         }
 
         return role;
+    }
+
+    public static void main(String[] args) {
+        List<SystemUsers> users = new LoginService().getList();
+
+        for (SystemUsers user : users)
+            System.out.println(user);
+
     }
 }
