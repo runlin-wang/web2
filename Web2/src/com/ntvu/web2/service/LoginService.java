@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author alin
  * 实现数据库后台逻辑代码
  */
 public class LoginService {
@@ -25,6 +26,7 @@ public class LoginService {
      * 数据库连接信息
      */
     public LoginService() {
+        //TODO update default
 //        url = "jdbc:mysql://localhost:3306/web2?serverTimezone=Asia/Shanghai";
         url = "jdbc:mysql://localhost:3306/study_jsp?serverTimezone=Asia/Shanghai";
         dbUserName = "root";
@@ -46,7 +48,8 @@ public class LoginService {
      */
     public boolean login(String loginName, String password) {
         String sql = String.format("select * from system_users where login_name='%s' and login_password='%s'", loginName, Tools.md5(password));
-        return getSystemUsers(sql) != null && !getSystemUsers(sql).isEmpty();
+        users = getSystemUsers(sql);
+        return users != null && !users.isEmpty();
     }
 
     /**
@@ -56,7 +59,8 @@ public class LoginService {
      */
     public boolean login(SystemUsers user) {
         String sql = String.format("select id, login_name from system_users where login_name='%s' and login_password='%s'", user.getLoginName(), Tools.md5(user.getLoginPassword()));
-        return getSystemUsers(sql) != null && getSystemUsers(sql).isEmpty();
+        users = getSystemUsers(sql);
+        return users != null && !users.isEmpty();
     }
 
     /**
@@ -119,7 +123,7 @@ public class LoginService {
      * @param loginName 用户名
      * @return row(s) 受影响的行数
      */
-    public boolean delete(String loginName) {
+    public boolean DELETE(String loginName) {
         String sql = String.format("delete from system_users where login_name = '%s';", loginName);
         return updateSql(sql) > 0;
     }
@@ -335,11 +339,14 @@ public class LoginService {
         return role;
     }
 
+    /**
+     * 先测试 main 方法无异常出现后再启动 tomcat 服务器
+     * @param args 控制台参数
+     */
     public static void main(String[] args) {
         List<SystemUsers> users = new LoginService().getList();
 
         for (SystemUsers user : users)
             System.out.println(user);
-
     }
 }
