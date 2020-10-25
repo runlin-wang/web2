@@ -18,9 +18,9 @@ public class LoginService {
     private final String dbUserName;
     private final String dbPwd;
 
-    List<SystemUsers> users = null;
-    Connection conn = null;
-    Statement stmt = null;
+    private List<SystemUsers> users;
+    private Connection conn;
+    private Statement stmt;
 
     /**
      * 数据库连接信息
@@ -123,7 +123,7 @@ public class LoginService {
      * @param loginName 用户名
      * @return row(s) 受影响的行数
      */
-    public boolean DELETE(String loginName) {
+    public boolean delete(String loginName) {
         String sql = String.format("delete from system_users where login_name = '%s';", loginName);
         return updateSql(sql) > 0;
     }
