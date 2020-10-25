@@ -23,7 +23,7 @@ public class LoginService {
     private Statement stmt;
 
     /**
-     * 数据库连接信息
+     * TODO 请先修改此处的数据库连接信息
      */
     public LoginService() {
         //TODO update default
