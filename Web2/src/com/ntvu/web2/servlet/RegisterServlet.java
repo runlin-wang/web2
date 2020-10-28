@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String telephone = req.getParameter("telephone");
         String email = req.getParameter("email");
 
-        SystemUsers user = new SystemUsers(loginName, pwd, telephone, email);
+        SystemUsers user = new SystemUsers(0, loginName, pwd, telephone, email);
         user.setLoginName(req.getParameter("txtLoginName"));
         user.setLoginPassword(req.getParameter("pwd"));
         user.setTelephone(req.getParameter("telephone"));

@@ -9,11 +9,11 @@ public class SystemUsers {
     private int id = 0;
     private String loginName;
     private String loginPassword;
-    private String loginSalt = "";
+    private String loginSalt;
     private String telephone;
     private String email;
-    private boolean status = true;
-    private int roleId = 2;
+    private boolean status;
+    private int roleId;
 
     /**
      * 用户对应的角色
@@ -22,7 +22,8 @@ public class SystemUsers {
 
     public SystemUsers() {}
 
-    public SystemUsers(String loginName, String loginPassword, String loginSalt, String telephone, String email, boolean status, int roleId, Roles role) {
+    public SystemUsers(int id, String loginName, String loginPassword, String loginSalt, String telephone, String email, boolean status, int roleId, Roles role) {
+        this.id = id;
         this.loginName = Tools.isEmpty(loginName, "default");
         this.loginPassword = Tools.isEmpty(loginPassword, "123456");
         this.loginSalt = Tools.isEmpty(loginSalt, "salt");
@@ -34,8 +35,8 @@ public class SystemUsers {
             this.role = role;
     }
 
-    public SystemUsers(String loginName, String pwd, String telephone, String email) {
-        this(loginName, pwd, null, telephone, email, true, 2, null);
+    public SystemUsers(int id, String loginName, String pwd, String telephone, String email) {
+        this(id, loginName, pwd, null, telephone, email, true, 2, null);
     }
 
     public int getId() {

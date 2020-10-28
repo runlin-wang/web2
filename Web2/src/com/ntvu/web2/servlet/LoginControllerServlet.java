@@ -2,7 +2,6 @@ package com.ntvu.web2.servlet;
 
 import com.ntvu.web2.service.LoginService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +15,11 @@ import java.io.IOException;
 @WebServlet(name = "loginController", value = "/doLogin", description = "登录验证服务")
 public class LoginControllerServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doGet(request,response);
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("utf-8");
         String path = req.getContextPath();
         String username = req.getParameter("username");
