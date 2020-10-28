@@ -24,9 +24,9 @@ public class LoginService {
     private Statement stmt;
 
     public LoginService() {
-        url = "jdbc:mysql://localhost:3306/study_jsp?serverTimezone=Asia/Shanghai";
+        url = "jdbc:mysql://localhost:3306/web2?serverTimezone=Asia/Shanghai";
         dbUserName = "root";
-        dbPwd = "root@123";
+        dbPwd = "123456";
     }
 
     public LoginService(String url, String dbUserName, String dbPwd) {
