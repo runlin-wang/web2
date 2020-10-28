@@ -3,6 +3,7 @@ package com.ntvu.web2.service;
 import com.ntvu.web2.entity.Roles;
 import com.ntvu.web2.entity.SystemUsers;
 import com.ntvu.web2.util.Tools;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,15 +23,9 @@ public class LoginService {
     private Connection conn;
     private Statement stmt;
 
-    /**
-     * TODO 请先修改此处的数据库连接信息
-     */
     public LoginService() {
-        //TODO update default
-//        url = "jdbc:mysql://localhost:3306/web2?serverTimezone=Asia/Shanghai";
         url = "jdbc:mysql://localhost:3306/study_jsp?serverTimezone=Asia/Shanghai";
         dbUserName = "root";
-//        dbPwd = "123456";
         dbPwd = "root@123";
     }
 
@@ -58,7 +53,7 @@ public class LoginService {
      * @return Boolean 成功返回 true，失败返回 false
      */
     public boolean login(SystemUsers user) {
-        String sql = String.format("select id, login_name from system_users where login_name='%s' and login_password='%s'", user.getLoginName(), Tools.md5(user.getLoginPassword()));
+        String sql = String.format("select * from system_users where login_name='%s' and login_password='%s'", user.getLoginName(), Tools.md5(user.getLoginPassword()));
         users = getSystemUsers(sql);
         return users != null && !users.isEmpty();
     }
@@ -161,7 +156,7 @@ public class LoginService {
      * @return SystemUsers 对象
      */
     public SystemUsers findByLoginName(String loginName) {
-        String sql = String.format("select login_name, telephone, email, role_id from system_users where login_name = '%s'", loginName);
+        String sql = String.format("select * from system_users where login_name = '%s'", loginName);
         users = getSystemUsers(sql);
         return users.isEmpty() ? null : users.get(0);
     }
@@ -172,7 +167,7 @@ public class LoginService {
      * @return SystemUsers
      */
     public SystemUsers findById(int id) {
-        String sql = String.format("select login_name, telephone, email, role_id from system_users where login_name = %d", id);
+        String sql = String.format("select * from system_users where id = %d", id);
         users = getSystemUsers(sql);
         return users.isEmpty() ? null : users.get(0);
     }
@@ -184,6 +179,26 @@ public class LoginService {
     public List<SystemUsers> getList() {
         String sql = "select * from system_users";
         return getSystemUsers(sql);
+    }
+
+    /**
+     * 返回所有角色名称
+     * @return 所有角色名称
+     */
+    public List<String> getRoleNames() {
+        createConnection();
+        String sql = "select role_name from roles";
+        List<String> roleNames = null;
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            roleNames = new ArrayList<>();
+            while (rs.next())
+                roleNames.add(rs.getString("role_name"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        closeConnection();
+        return roleNames;
     }
 
     /**
@@ -305,7 +320,7 @@ public class LoginService {
             users = new ArrayList<>();
             while (rs.next()) {
                 // 每次添加一个 SystemUsers 对象
-                users.add(new SystemUsers(rs.getString("login_name"), rs.getString("login_password"), null, rs.getString("telephone"), rs.getString("email"),
+                users.add(new SystemUsers(rs.getInt("id"), rs.getString("login_name"), rs.getString("login_password"), null, rs.getString("telephone"), rs.getString("email"),
                         rs.getBoolean("status"), rs.getInt("role_id"), getRole(rs.getInt("role_id"))));
             }
             closeConnection();
