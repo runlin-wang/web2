@@ -42,11 +42,11 @@
 
 ### JDK 及 MySQL确认
 
-![java_version.png](https://i.loli.net/2020/10/23/2dhTOLVwC4B7Hkx.png)
+![java_version.png](https://runlin_wang.gitee.io/img/study_jsp/java_version.png)
 
 >  确保 JDK 环境在 1.8 及以上
 
-![mysql_version.png](https://i.loli.net/2020/10/23/hlwATnIj6Q3RbaC.png)
+![mysql_version.png](https://runlin_wang.gitee.io/img/study_jsp/mysql_version.png)
 
 > 确保 MySQL 环境在 8.0 以上 确保能够通过命令行进入 MySQL 环境
 
@@ -85,12 +85,12 @@
     - 密码        123456
     
 
-- ![config.png](https://i.loli.net/2020/10/23/Q1X4GV6lu3PxiJj.png)
+- ![config.png](https://runlin_wang.gitee.io/img/study_jsp/config.png)
 
 
 
 - 项目结构中添加 servlet 及 jdbc 的 jar 包
-- ![config2.png](https://i.loli.net/2020/10/23/GfFAPajKMhHwLVr.png)
+- ![config2.png](https://runlin_wang.gitee.io/img/study_jsp/config2.png)
 - Problems 中如含有问题 请点击 fix -> add *** 添加到项目结构中
 
 
@@ -99,8 +99,8 @@
 
 - 添加 Tomcat 服务器
 - 选择 解压后的 Tomcat 根目录，并点击 fix
-- ![config3.png](https://i.loli.net/2020/10/23/dioR8ymYZ4kTPeh.png)
+- ![config3.png](https://runlin_wang.gitee.io/img/study_jsp/config3.png)
 
 - 将框内内容删除并点击 OK
-- ![config4.png](https://i.loli.net/2020/10/23/7YyCozZxgqufWNS.png)
+- ![config4.png](https://runlin_wang.gitee.io/img/study_jsp/config4.png)
 - 点击小绿点 运行 （run）
