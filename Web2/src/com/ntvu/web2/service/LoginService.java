@@ -192,7 +192,7 @@ public class LoginService {
         Pager<SystemUsers> pager;
         key = "%" + key + "%";
         String sql = String.format("select * from system_users where id like '%s' or login_name like '%s' or telephone like '%s' or email like '%s' or role_id like '%s' limit %d, %d",
-                key, key, key, key, key, pageIndex, pageSize);
+                key, key, key, key, key, (pageIndex - 1) * pageSize, pageSize);
 
         int totalRecord = getCount(key);
         pager = new Pager<>(pageIndex, pageSize, totalRecord / pageSize + 1, totalRecord, getSystemUsers(sql));
@@ -363,9 +363,7 @@ public class LoginService {
     private List<SystemUsers> getSystemUsers(String sql) {
         System.out.println(sql);
         try {
-            stmt = conn.createStatement();
             ResultSet rs = executeQuery(sql);
-
             // 遍历结果集，转换为 SystemUsers 类并依次添加到列表
             users = new ArrayList<>();
             while (rs.next()) {

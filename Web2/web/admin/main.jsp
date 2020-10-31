@@ -32,10 +32,12 @@
     <hr/>
     <div class="main">
         <div class="query">
-            <p>
-                <label>查询条件<input type="text" name="query"></label>
-                <input type="submit" value="查询">
-            </p>
+            <form action="main.jsp" name="queryForm">
+                <p>
+                    <label>查询条件<input type="text" name="key"></label>
+                    <input type="submit" value="查询">
+                </p>
+            </form>
         </div>
         <div class="table">
             <table>
