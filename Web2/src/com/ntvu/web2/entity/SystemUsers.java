@@ -24,11 +24,11 @@ public class SystemUsers {
 
     public SystemUsers(int id, String loginName, String loginPassword, String loginSalt, String telephone, String email, boolean status, int roleId, Roles role) {
         this.id = id;
-        this.loginName = Tools.isEmpty(loginName, "default");
-        this.loginPassword = Tools.isEmpty(loginPassword, "123456");
-        this.loginSalt = Tools.isEmpty(loginSalt, "salt");
-        this.telephone = Tools.isEmpty(telephone, "1234567890");
-        this.email = Tools.isEmpty(email, "123456@123.top");
+        this.loginName = Tools.getNullOrEmpty(loginName, "default");
+        this.loginPassword = Tools.getNullOrEmpty(loginPassword, "123456");
+        this.loginSalt = Tools.getNullOrEmpty(loginSalt, "salt");
+        this.telephone = Tools.getNullOrEmpty(telephone, "1234567890");
+        this.email = Tools.getNullOrEmpty(email, "123456@123.top");
         this.status = status;
         this.roleId = roleId;
         if (role != null)

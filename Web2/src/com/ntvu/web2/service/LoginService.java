@@ -1,9 +1,9 @@
 package com.ntvu.web2.service;
 
+import com.ntvu.web2.common.Pager;
 import com.ntvu.web2.entity.Roles;
 import com.ntvu.web2.entity.SystemUsers;
 import com.ntvu.web2.util.Tools;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -176,9 +176,49 @@ public class LoginService {
      * 返回当前所有用户列表
      * @return List<SystemUsers>
      */
-    public List<SystemUsers> getList() {
+    public List<SystemUsers> getUsers() {
         String sql = "select * from system_users";
         return getSystemUsers(sql);
+    }
+
+    /**
+     * 分页显示查询结果
+     * @param pageIndex 页码
+     * @param pageSize 显示条数
+     * @param key 模糊查找值
+     * @return SystemUsers 列表
+     */
+    public Pager<SystemUsers> getPagers(String key, int pageIndex, int pageSize) {
+        Pager<SystemUsers> pager;
+        key = "%" + key + "%";
+        String sql = String.format("select * from system_users where id like '%s' or login_name like '%s' or telephone like '%s' or email like '%s' or role_id like '%s' limit %d, %d",
+                key, key, key, key, key, pageIndex, pageSize);
+
+        int totalRecord = getCount(key);
+        pager = new Pager<>(pageIndex, pageSize, totalRecord / pageSize + 1, totalRecord, getSystemUsers(sql));
+
+        return pager;
+    }
+
+    /**
+     * 通过 key 查找对应记录条数
+     * @param key 关键字
+     * @return int
+     */
+    public int getCount(String key) {
+        String sql = "select count(*) from system_users where id like '%s' or login_name like '%s' or telephone like '%s' or email like '%s' or role_id like '%s'";
+        sql = String.format(sql, key, key, key, key, key);
+        int count = 0;
+        try {
+            ResultSet rs = executeQuery(sql);
+            if (rs.next())
+                count = rs.getInt(1);
+            rs.close();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        closeConnection();
+        return count;
     }
 
     /**
@@ -186,14 +226,14 @@ public class LoginService {
      * @return 所有角色名称
      */
     public List<String> getRoleNames() {
-        createConnection();
         String sql = "select role_name from roles";
         List<String> roleNames = null;
         try {
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = executeQuery(sql);
             roleNames = new ArrayList<>();
             while (rs.next())
                 roleNames.add(rs.getString("role_name"));
+            rs.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -305,16 +345,26 @@ public class LoginService {
     }
 
     /**
+     * 执行查询 SQL 语句
+     * @param sql 语句
+     * @return ResultSet
+     * @throws SQLException SQL 异常
+     */
+    public ResultSet executeQuery(String sql) throws SQLException {
+        createConnection();
+        return stmt.executeQuery(sql);
+    }
+
+    /**
      * 获取 SystemUsers 列表
      * @param sql 数据库查询语句
      * @return List<SystemUsers>
      */
     private List<SystemUsers> getSystemUsers(String sql) {
         System.out.println(sql);
-        createConnection();
         try {
             stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = executeQuery(sql);
 
             // 遍历结果集，转换为 SystemUsers 类并依次添加到列表
             users = new ArrayList<>();
@@ -323,6 +373,7 @@ public class LoginService {
                 users.add(new SystemUsers(rs.getInt("id"), rs.getString("login_name"), rs.getString("login_password"), null, rs.getString("telephone"), rs.getString("email"),
                         rs.getBoolean("status"), rs.getInt("role_id"), getRole(rs.getInt("role_id"))));
             }
+            rs.close();
             closeConnection();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -344,8 +395,8 @@ public class LoginService {
                 role.setRoleName(rs.getString("role_name"));
                 role.setComments(rs.getString("comments"));
             }
-
-            // 5. 关闭连接
+            // 关闭连接
+            rs.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -359,7 +410,21 @@ public class LoginService {
      * @param args 控制台参数
      */
     public static void main(String[] args) {
-        List<SystemUsers> users = new LoginService().getList();
+        // 测试数据
+        LoginService ls = new LoginService("", "", "");
+        List<SystemUsers> users = ls.getUsers();
+        List<Boolean> success = new ArrayList<>();
+        success.add(ls.login(users.get(0)));
+        success.add(ls.register("", "", "", "", "", false, 0));
+        success.add(ls.delete(0));
+        success.add(ls.delete(0, 1));
+        success.add(ls.delete(""));
+        success.add(ls.delete("", ""));
+        success.add(ls.deleteByRoleId(0));
+        success.add(ls.valid(0));
+        success.add(ls.valid(""));
+        SystemUsers su = ls.getDetails(1);
+        success.add(ls.resetPassword(su, "123"));
 
         for (SystemUsers user : users)
             System.out.println(user);
